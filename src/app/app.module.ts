@@ -13,9 +13,8 @@ import { LightService } from './services/light.service'
 
 
 const appRoutes=[
-
-  {path:'light-states', component:LightStatesComponent},
-
+  {path:'', component:DashboardComponent},
+  {path:'light-states', component:LightStatesComponent}
 ]
 
 @NgModule({

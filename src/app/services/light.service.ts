@@ -12,9 +12,9 @@ export class LightService {
   
     constructor(private http:Http) { }
   
-    getHueState(): Observable<any>{
+    getLightState(id): Observable<any>{
   
-      return this.http.get('http://localhost:8080/api/newdeveloper/lights/1')
+      return this.http.get('http://localhost:8080/api/newdeveloper/lights/'+id)
       .map(res => res.json());
     }
     
