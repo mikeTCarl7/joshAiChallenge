@@ -1,8 +1,7 @@
- export interface StateSummary{
+ export interface StateSummary {
 
-    name:string,
-    id:string,
-    on:string,
-    brightness:number
-    
-} 
+    name: string;
+    id: string;
+    on: string;
+    brightness: number;
+}

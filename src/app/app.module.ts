@@ -10,6 +10,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LightStatesComponent } from './components/light-states/light-states.component';
 import { LightService } from './services/light.service'
+import { LightData } from './services/lightdata.service'
 
 
 const appRoutes=[
@@ -30,7 +31,7 @@ const appRoutes=[
     FormsModule,
     HttpModule
   ],
-  providers: [LightService],
+  providers: [LightService, LightData],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

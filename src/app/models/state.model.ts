@@ -30,8 +30,3 @@ export interface RootObject {
     swversion: string;
     pointsymbol: Pointsymbol;
 }
-
-    
-
-    
-    
