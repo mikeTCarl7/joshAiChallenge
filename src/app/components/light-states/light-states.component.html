@@ -1,3 +1,22 @@
-<p>
-  light-states works!
-</p>
+<div *ngIf="stateSummary"> 
+  <div class="well">
+    <ul class="list-group">
+      {{allLights}}
+
+      <!-- <li class="list-group-item">Name: {{state.name}} </li> -->
+      <!-- <li class="list-group-item">ID: 1 </li> -->
+      <li class="list-group-item">On: {{stateSummary.on}} </li>
+      <li class="list-group-item">Brightness: {{stateSummary.brightness}}</li>
+      <!-- <li class="list-group-item">Swversion: {{s1.hue}} </li>
+      <li class="list-group-item">Point Symbol: {{pointsymbol}}</li> -->
+    </ul>
+
+  </div>
+
+    <button class="btn btn-success" (click)="getStateForBtn()">Get State</button>
+    <button class="btn btn-success" (click)="setHueState(5000, false, 100)">Set State</button>
+    <button class="btn btn-success" (click)="getPreviousResponse()">Log Previous Response</button>
+    
+
+
+</div>

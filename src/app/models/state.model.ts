@@ -31,3 +31,7 @@ export interface RootObject {
     pointsymbol: Pointsymbol;
 }
 
+    
+
+    
+    

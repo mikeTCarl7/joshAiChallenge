@@ -37,5 +37,8 @@ export class LightService {
           res =>res.json()
         )
     }
+    getAllLights(){
+      return this.http.get('http://localhost:8080/api/newdeveloper/lights').map(res => res.json())
+    }
 
 }
