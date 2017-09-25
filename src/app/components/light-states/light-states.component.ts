@@ -52,6 +52,8 @@ export class LightStatesComponent implements OnInit {
   pointSymbol: Pointsymbol;
   allLights: AllLights;
 
+  vo:any;
+
     ngOnInit() {
       this.getAllLights();
       // this.setHueState(5000, true, 100);
@@ -63,6 +65,11 @@ export class LightStatesComponent implements OnInit {
         this.tick = t;
         this.getStateLight1();
         this.getStateLight2();
+      });
+
+      this.svc.getLightData2().subscribe((res) => {
+        console.log('printing the mac daddy');
+        console.log(res);
       });
       // this.svc.getLightStateToLTData;
       // console.log(this.ligthdata)
