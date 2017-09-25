@@ -8,7 +8,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { LightStatesComponent } from './components/light-states/light-states.component';
+
 import { LightService } from './services/light.service';
 import { LightData } from './services/lightdata.service';
 import { LightsComponent } from './components/lights/lights.component';
@@ -16,7 +16,6 @@ import { LightsComponent } from './components/lights/lights.component';
 
 const appRoutes = [
   {path: '', component: DashboardComponent},
-  {path: 'light-states', component: LightStatesComponent},
   {path: 'lights', component: LightsComponent}
 ];
 
@@ -25,7 +24,6 @@ const appRoutes = [
     AppComponent,
     DashboardComponent,
     NavbarComponent,
-    LightStatesComponent,
     LightsComponent
   ],
   imports: [

@@ -1,19 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import {LightService} from '../../services/light.service';
-import {Light1, Light2, AllLights} from '../../models/all-lights.model';
-// import { LightStatesComponent } from '../light-states/light-states.component';
-
-import {Pointsymbol} from '../../models/state.model';
-import {RootObject} from '../../models/state.model';
-
-
 import 'rxjs/Rx';
 import {TimerObservable} from 'rxjs/observable/TimerObservable';
 import {Subscription} from 'rxjs/Rx';
-
-
-
 import { LightData} from '../../services/lightdata.service';
 
 @Component({
@@ -25,16 +15,13 @@ import { LightData} from '../../services/lightdata.service';
 export class LightsComponent implements OnInit {
   lightData: LightData;
   lightDataList: Array<LightData>;
-  previousData:any;
+  previousData: any;
 
   private subscription: Subscription;
 
   constructor( private http: Http, public svc: LightService) {}
 
   ngOnInit() {
-
-    
-
     this.checkForChangesOnInterval();
     // this.getLightData();
   }
@@ -46,19 +33,19 @@ export class LightsComponent implements OnInit {
   getLightData() {
     if (this.lightDataList == null) {
 
-      this.svc.getLightData2().subscribe(res => {
+      this.svc.getLightData().subscribe(res => {
         this.lightDataList = res;
         this.previousData = this.lightDataList;
         // console.log(this.lightDataList);
     });
     }else {
-      this.svc.getLightData2().subscribe(res => {
+      this.svc.getLightData().subscribe(res => {
         this.lightDataList = res;
 
-        for(let i = 0; i < this.lightDataList.length; i++ ) {
+        for (let i = 0; i < this.lightDataList.length; i++ ) {
           if ( (this.previousData[i].on !== this.lightDataList[i].on) &&
               (this.previousData[i].brightness !== this.lightDataList[i].brightness)) {
-                console.log('differences occured');
+                // console.log('differences occured');
                 console.log('id:' + this.lightDataList[i].id + '\n' +
                 'on: ' + this.lightDataList[i].on + '\n' + 'brightness: '
                 + this.lightDataList[i].brightness);
@@ -72,7 +59,7 @@ export class LightsComponent implements OnInit {
               this.previousData[i] = this.lightDataList[i];
 
             }
-            if ( (this.previousData[i].on === this.lightDataList[i].on) &&
+          if ((this.previousData[i].on === this.lightDataList[i].on) &&
               (this.previousData[i].brightness !== this.lightDataList[i].brightness)) {
                 console.log('id:' + this.lightDataList[i].id);
                 console.log('brightness: ' + this.lightDataList[i].brightness);
@@ -82,16 +69,10 @@ export class LightsComponent implements OnInit {
 
     });
     }
-
-
   }
-
-
-
   checkForChangesOnInterval() {
     const timer = TimerObservable.create(2000, 1000);
     this.subscription = timer.subscribe(t => {
-      // this.tick = t;
       this.getLightData();
     });
   }

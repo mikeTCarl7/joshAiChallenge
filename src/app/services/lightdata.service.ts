@@ -11,32 +11,27 @@ export class LightData {
     on: boolean;
     brightness: number;
 
+    // setLightData(jsonObject: any, id: any) {
+
+    //     const vo = new LightData();
+    //     // vo.name = jsonObject.state.name;
+    //     vo.id = id;
+    //     vo.on = jsonObject.state.on;
+    //     vo.brightness = jsonObject.state.bri;
+    //     // console.log(vo);
+    //     return vo;
+
+
+    // }
+
     setLightData(jsonObject: any, id: any) {
-
-        const vo = new LightData();
-        // vo.name = jsonObject.state.name;
-        vo.id = id;
-        vo.on = jsonObject.state.on;
-        vo.brightness = jsonObject.state.bri;
-        // console.log(vo);
-        return vo;
-
-
-    }
-
-    setLightData2(jsonObject: any, id: any) {
 
                 const vo = new LightData();
                 vo.name = jsonObject.name;
-
                 vo.id = id;
-                // console.log(jsonObject);
                 vo.on = jsonObject.state.on;
                 vo.brightness = jsonObject.state.bri;
-                // console.log(vo);
                 return vo;
-        
-        
             }
 
 }
