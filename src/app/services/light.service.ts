@@ -55,21 +55,18 @@ export class LightService {
 
     getLightData(): Observable<any> {
 
-      // console.log('get light data baout to be called');
       return this.http.get('http://localhost:8080/api/newdeveloper/lights')
         .map((res: any) => {
-          // console.log(res);
           const jsonObject: any = res.json();
-          // console.log(res.json());
           return this.setAllLightNamesAndIDs(jsonObject);
         }).flatMap((lightNamesAndIDs: any) => {
            return Observable.forkJoin(lightNamesAndIDs.map((lightNameAndID) => {
-            //  console.log(m.id + 'is the id in which we are printing');
+ 
              return this.http.get('http://localhost:8080/api/newdeveloper/lights/' + lightNameAndID.id)
              .map((res: Response) => {
                 res.json();
                 let lightData: LightData;
-                // const mx: Array<LightData> =[];
+
                lightData = this.lightdata.setLightData(res.json(), lightNameAndID.id );
                return lightData;
              }

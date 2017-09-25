@@ -10,8 +10,8 @@ import { LightData} from '../../services/lightdata.service';
   selector: 'app-lights',
   templateUrl: './lights.component.html',
   styleUrls: ['./lights.component.css']
-  // entryComponents: [LightStatesComponent]
 })
+
 export class LightsComponent implements OnInit {
   lightData: LightData;
   lightDataList: Array<LightData>;
@@ -76,8 +76,6 @@ export class LightsComponent implements OnInit {
       this.getLightData();
     });
   }
-
-
 }
 
 
