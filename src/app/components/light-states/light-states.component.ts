@@ -22,10 +22,10 @@ import {Subscription} from 'rxjs';
 export class LightStatesComponent implements OnInit {
 
   stateSummaryLight1= {
-    name:'',
-    id:'',
-    on:'',
-    brightness:0
+    name: '',
+    id: '',
+    on: '',
+    brightness: 0
   };
 
  stateSummaryLight2= {

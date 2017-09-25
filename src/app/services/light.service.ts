@@ -68,15 +68,15 @@ export class LightService {
               };
 
               temp.id = i.toString();
-              console.log('json object below');
-              console.log(jsonObject[i].name);
+              // console.log('json object below');
+              // console.log(jsonObject[i].name);
               temp.name = jsonObject[i].name;
   // debugger
-              console.log('about to print temp');
+              // console.log('about to print temp');
               // console.log(this.temp);
               me.push(temp);
-              console.log('about to print me');
-              console.log(me);
+              // console.log('about to print me');
+              // console.log(me);
 
             }
             return me;
@@ -86,7 +86,7 @@ export class LightService {
           getLightState2(id) {
             return this.http.get('http://localhost:8080/api/newdeveloper/lights/' + id)
             .map(res => {
-              console.log(res.json());
+              // console.log(res.json());
               res.json();
 
             });
@@ -116,16 +116,17 @@ export class LightService {
 
 
     getLightData2(): Observable<any> {
-      console.log('get light data baout to be called');
+      
+      // console.log('get light data baout to be called');
       return this.http.get('http://localhost:8080/api/newdeveloper/lights')
         .map((res: any) => {
-          console.log(res);
+          // console.log(res);
           let jsonObject: any = res.json();
-          console.log(res.json());
+          // console.log(res.json());
           return this.setAllLightNamesAndIDs(jsonObject);
         }).flatMap((me: any) => {
            return Observable.forkJoin(me.map((m) => {
-             console.log(m.id + 'is the id in which we are printing');
+            //  console.log(m.id + 'is the id in which we are printing');
              return this.http.get('http://localhost:8080/api/newdeveloper/lights/' + m.id)
              .map((res: Response) => {
                 res.json();

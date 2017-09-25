@@ -25,6 +25,7 @@ import { LightData} from '../../services/lightdata.service';
 export class LightsComponent implements OnInit {
   lightData: LightData;
   lightDataList: Array<LightData>;
+  previousData:any;
 
   private subscription: Subscription;
 
@@ -32,7 +33,7 @@ export class LightsComponent implements OnInit {
 
   ngOnInit() {
 
-    debugger
+    
 
     this.checkForChangesOnInterval();
     // this.getLightData();
@@ -43,22 +44,60 @@ export class LightsComponent implements OnInit {
   }
 
   getLightData() {
-    this.svc.getLightData2().subscribe(res => {
-      console.log(res);
-      // res.json();
-      this.lightDataList = res;
-      // console.log(this.lightDataList);
-  });
+    if (this.lightDataList == null) {
+
+      this.svc.getLightData2().subscribe(res => {
+        this.lightDataList = res;
+        this.previousData = this.lightDataList;
+        // console.log(this.lightDataList);
+    });
+    }else {
+      this.svc.getLightData2().subscribe(res => {
+        this.lightDataList = res;
+
+        for(let i = 0; i < this.lightDataList.length; i++ ) {
+          if ( (this.previousData[i].on !== this.lightDataList[i].on) &&
+              (this.previousData[i].brightness !== this.lightDataList[i].brightness)) {
+                console.log('differences occured');
+                console.log('id:' + this.lightDataList[i].id + '\n' +
+                'on: ' + this.lightDataList[i].on + '\n' + 'brightness: '
+                + this.lightDataList[i].brightness);
+                this.previousData[i] = this.lightDataList[i];
+          }
+          if ( (this.previousData[i].on !== this.lightDataList[i].on) &&
+            (this.previousData[i].brightness === this.lightDataList[i].brightness)) {
+
+              console.log('id:' + this.lightDataList[i].id);
+              console.log('on: ' + this.lightDataList[i].on);
+              this.previousData[i] = this.lightDataList[i];
+
+            }
+            if ( (this.previousData[i].on === this.lightDataList[i].on) &&
+              (this.previousData[i].brightness !== this.lightDataList[i].brightness)) {
+                console.log('id:' + this.lightDataList[i].id);
+                console.log('brightness: ' + this.lightDataList[i].brightness);
+                this.previousData[i] = this.lightDataList[i];
+              }
+        }
+
+    });
+    }
+
+
   }
+
+
 
   checkForChangesOnInterval() {
     const timer = TimerObservable.create(2000, 1000);
     this.subscription = timer.subscribe(t => {
-
       // this.tick = t;
       this.getLightData();
     });
-
   }
 
+
 }
+
+
+
