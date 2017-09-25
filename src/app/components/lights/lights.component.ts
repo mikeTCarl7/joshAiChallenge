@@ -36,6 +36,11 @@ export class LightsComponent implements OnInit {
       this.svc.getLightData().subscribe(res => {
         this.lightDataList = res;
         this.previousData = this.lightDataList;
+        // Print out intial states
+        this.lightDataList.forEach((ldl, ndx, ldlarray) => {
+          console.log(this.lightDataList[ndx]);
+        });
+        
     });
     }else {
       this.svc.getLightData().subscribe(res => {
