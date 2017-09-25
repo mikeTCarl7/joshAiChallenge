@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import {Observable} from 'rxjs/Observable';
 
-@Injectable()
+// @Injectable()
 export class LightData {
 
     name: string;

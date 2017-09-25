@@ -52,7 +52,7 @@ export class LightStatesComponent implements OnInit {
   pointSymbol: Pointsymbol;
   allLights: AllLights;
 
-  vo:any;
+  vo: any;
 
     ngOnInit() {
       this.getAllLights();

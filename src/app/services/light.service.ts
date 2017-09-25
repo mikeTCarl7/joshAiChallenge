@@ -58,7 +58,7 @@ export class LightService {
             });
         }
 
-        setLightData(jsonObject:any){
+        setAllLightNamesAndIDs(jsonObject:any){
             const me: Array<LightNameAndID> = [];
             for ( let i = 1; i < Object.keys(jsonObject).length + 1 ; i++ ) {
               // let Inum = i-1;
@@ -93,25 +93,25 @@ export class LightService {
           }
 
 
-      getLightData(): Observable<any> {
-        console.log('get light data baout to be called');
-        return this.http.get('http://localhost:8080/api/newdeveloper/lights')
-          .map((res: any) => {
-            console.log(res);
-            let jsonObject: any = res.json();
-            console.log(res.json());
-            return this.setLightData(jsonObject);
-          }).flatMap((me: any) => {
-            console.log('my value');
-            console.log(me);
-            return this.http.get('http://localhost:8080/api/newdeveloper/lights/' + me[1].id)
-            .map((res: any) => {
-              console.log(res);
-              res.json();
-            });
+    //   getLightData(): Observable<any> {
+    //     console.log('get light data baout to be called');
+    //     return this.http.get('http://localhost:8080/api/newdeveloper/lights')
+    //       .map((res: any) => {
+    //         console.log(res);
+    //         let jsonObject: any = res.json();
+    //         console.log(res.json());
+    //         return this.setAllLightNamesAndIDs(jsonObject);
+    //       }).flatMap((me: any) => {
+    //         console.log('my value');
+    //         console.log(me);
+    //         return this.http.get('http://localhost:8080/api/newdeveloper/lights/' + me[1].id)
+    //         .map((res: any) => {
+    //           console.log(res);
+    //           res.json();
+    //         });
 
-      });
-    }
+    //   });
+    // }
 
 
 
@@ -122,9 +122,8 @@ export class LightService {
           console.log(res);
           let jsonObject: any = res.json();
           console.log(res.json());
-          return this.setLightData(jsonObject);
+          return this.setAllLightNamesAndIDs(jsonObject);
         }).flatMap((me: any) => {
-          
            return Observable.forkJoin(me.map((m) => {
              console.log(m.id + 'is the id in which we are printing');
              return this.http.get('http://localhost:8080/api/newdeveloper/lights/' + m.id)

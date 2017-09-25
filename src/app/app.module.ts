@@ -9,14 +9,15 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LightStatesComponent } from './components/light-states/light-states.component';
-import { LightService } from './services/light.service'
+import { LightService } from './services/light.service';
 import { LightData } from './services/lightdata.service';
 import { LightsComponent } from './components/lights/lights.component';
 
 
-const appRoutes=[
-  {path:'', component:DashboardComponent},
-  {path:'light-states', component:LightStatesComponent}
+const appRoutes = [
+  {path: '', component: DashboardComponent},
+  {path: 'light-states', component: LightStatesComponent},
+  {path: 'lights', component: LightsComponent}
 ];
 
 @NgModule({
@@ -25,7 +26,7 @@ const appRoutes=[
     DashboardComponent,
     NavbarComponent,
     LightStatesComponent,
-    LightsComponent,
+    LightsComponent
   ],
   imports: [
     BrowserModule,
