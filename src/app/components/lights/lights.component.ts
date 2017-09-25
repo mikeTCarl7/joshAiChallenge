@@ -23,7 +23,7 @@ export class LightsComponent implements OnInit {
 
   ngOnInit() {
     this.checkForChangesOnInterval();
-    // this.getLightData();
+
   }
 
   ngOnDestroy() {
@@ -36,12 +36,11 @@ export class LightsComponent implements OnInit {
       this.svc.getLightData().subscribe(res => {
         this.lightDataList = res;
         this.previousData = this.lightDataList;
-        // console.log(this.lightDataList);
     });
     }else {
       this.svc.getLightData().subscribe(res => {
         this.lightDataList = res;
-
+        // the below logic determines what is printed based on the changes to a given lights state
         for (let i = 0; i < this.lightDataList.length; i++ ) {
           if ( (this.previousData[i].on !== this.lightDataList[i].on) &&
               (this.previousData[i].brightness !== this.lightDataList[i].brightness)) {
@@ -70,6 +69,8 @@ export class LightsComponent implements OnInit {
     });
     }
   }
+  // call the http get lights on a time interval in order to notice changes.
+  // if we were using push technology the interval timer would not be necessary. 
   checkForChangesOnInterval() {
     const timer = TimerObservable.create(2000, 1000);
     this.subscription = timer.subscribe(t => {

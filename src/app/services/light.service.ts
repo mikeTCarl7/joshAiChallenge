@@ -15,7 +15,7 @@ export class LightService {
   public prevResponse: any;
 
     constructor(private http: Http, private lightdata: LightData) { }
-
+// This service is not called as we were not asked to perfom this crud oppertaion.
     setHueState(hueSetting, isOn, brightness) {
       const state = { hue: hueSetting,
       on: isOn,
@@ -25,7 +25,7 @@ export class LightService {
         .map(
           res => res.json());
     }
-
+// This service is not called as we were not asked to perfom this crud oppertaion.
     setLightName(newName) {
       const name = {name: newName };
       return this.http.put('http://localhost:8080/api/newdeveloper/lights/1', name)
@@ -33,9 +33,9 @@ export class LightService {
           res => res.json()
         );
     }
-    getAllLights() {
-      return this.http.get('http://localhost:8080/api/newdeveloper/lights').map(res => res.json())
-    }
+    // getAllLights() {
+    //   return this.http.get('http://localhost:8080/api/newdeveloper/lights').map(res => res.json())
+    // }
 
       setAllLightNamesAndIDs(jsonObject: any) {
             const NamesAndIDs: Array<LightNameAndID> = [];
@@ -68,6 +68,7 @@ export class LightService {
                 let lightData: LightData;
 
                lightData = this.lightdata.setLightData(res.json(), lightNameAndID.id );
+              //  console.log(lightData);
                return lightData;
              }
               );
